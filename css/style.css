@@ -1,60 +1,68 @@
 /* ============================================================
-   云擎科技 - 企业官网样式
-   蓝色科技风 · 原创设计
+   伟业泽城 - 企业官网样式表
+   金色主题（主色 #DAA520）· 原创设计
    ============================================================ */
 
+/* ------------------------------------------------------------
+   一、全局 CSS 变量（设计令牌）
+   通过变量统一管理配色，方便后续整体换肤
+   ------------------------------------------------------------ */
 :root {
-  --primary: #0a5cd6;
-  --primary-dark: #0848a8;
-  --primary-light: #e8f0fd;
-  --navy: #0a2540;
-  --navy-light: #123c66;
-  --accent: #ff6a00;
-  --text: #222831;
-  --text-muted: #6b7280;
-  --bg-light: #f5f7fa;
-  --bg-white: #ffffff;
-  --border: #e5e9f0;
-  --shadow: 0 6px 24px rgba(10, 37, 64, 0.08);
-  --shadow-hover: 0 12px 32px rgba(10, 92, 214, 0.16);
-  --radius: 10px;
-  --max-width: 1200px;
+  --primary: #DAA520;            /* 主色：金色（伟业泽城品牌色） */
+  --primary-dark: #B8860B;       /* 深金色：用于悬停/按压状态 */
+  --primary-light: #FBF0D8;      /* 浅金色：用于图标背景、hover 底色 */
+  --dark: #1E1810;               /* 深棕黑：用于顶部栏、页脚、深色背景 */
+  --dark-light: #3A2E14;         /* 稍浅的深棕：用于渐变过渡 */
+  --accent: #C07C00;             /* 强调金棕：用于标签、轮播指示点 */
+  --text: #2B2416;               /* 正文文字颜色 */
+  --text-muted: #8A7A55;         /* 次要文字颜色（灰金色） */
+  --bg-light: #FAF6EE;           /* 浅米色背景 */
+  --bg-white: #FFFFFF;           /* 纯白背景 */
+  --border: #EDE5D0;             /* 边框颜色（米金色） */
+  --shadow: 0 6px 24px rgba(30, 24, 16, 0.08);          /* 常规阴影 */
+  --shadow-hover: 0 12px 32px rgba(218, 165, 32, 0.20);  /* 悬停阴影（金色光晕） */
+  --radius: 10px;                /* 圆角半径 */
+  --max-width: 1200px;           /* 内容区最大宽度 */
 }
 
+/* ------------------------------------------------------------
+   二、全局重置与基础样式
+   ------------------------------------------------------------ */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  margin: 0;           /* 清除默认外边距 */
+  padding: 0;          /* 清除默认内边距 */
+  box-sizing: border-box; /* 盒模型设为 border-box，便于尺寸计算 */
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: smooth; /* 锚点跳转平滑滚动 */
 }
 
 body {
   font-family: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", "Helvetica Neue", Arial, sans-serif;
-  color: var(--text);
-  line-height: 1.6;
+  color: var(--text);       /* 全局文字颜色 */
+  line-height: 1.6;         /* 行高 */
   background: var(--bg-white);
-  -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased; /* 字体抗锯齿 */
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
-  transition: color 0.2s ease;
+  color: inherit;           /* 链接继承父元素颜色 */
+  text-decoration: none;    /* 去掉下划线 */
+  transition: color 0.2s ease; /* 颜色过渡动画 */
 }
 
 img {
-  max-width: 100%;
+  max-width: 100%;          /* 图片不超出容器 */
   display: block;
 }
 
 ul,
 ol {
-  list-style: none;
+  list-style: none;         /* 去除列表默认项目符号 */
 }
 
+/* 通用内容容器：居中并限制最大宽度 */
 .container {
   width: 100%;
   max-width: var(--max-width);
@@ -62,17 +70,19 @@ ol {
   padding: 0 24px;
 }
 
-/* ============ 顶部栏 ============ */
+/* ------------------------------------------------------------
+   三、顶部栏（股票代码 / 语言切换）
+   ------------------------------------------------------------ */
 .topbar {
-  background: var(--navy);
-  color: #c9d6e5;
+  background: var(--dark);  /* 深色背景 */
+  color: #CBB98F;           /* 浅金色文字 */
   font-size: 13px;
 }
 
 .topbar .container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-between; /* 左右两端对齐 */
   height: 38px;
 }
 
@@ -82,8 +92,9 @@ ol {
   gap: 16px;
 }
 
+/* 股票代码文字，用亮金色突出显示 */
 .topbar-left .stock {
-  color: #ffd166;
+  color: #F0C040;
   font-weight: 600;
 }
 
@@ -94,11 +105,11 @@ ol {
 }
 
 .topbar-right a {
-  color: #c9d6e5;
+  color: #CBB98F;
 }
 
 .topbar-right a:hover {
-  color: #fff;
+  color: #FFFFFF;           /* 悬停变白 */
 }
 
 .topbar-right .lang {
@@ -108,15 +119,17 @@ ol {
 }
 
 .topbar-right .lang .active {
-  color: #fff;
+  color: #FFFFFF;           /* 当前语言高亮 */
   font-weight: 600;
 }
 
-/* ============ 主导航 ============ */
+/* ------------------------------------------------------------
+   四、主导航栏
+   ------------------------------------------------------------ */
 .header {
   background: var(--bg-white);
   border-bottom: 1px solid var(--border);
-  position: sticky;
+  position: sticky;         /* 吸顶效果 */
   top: 0;
   z-index: 1000;
 }
@@ -128,6 +141,7 @@ ol {
   height: 72px;
 }
 
+/* 品牌 Logo */
 .logo {
   display: flex;
   align-items: center;
@@ -137,21 +151,22 @@ ol {
   color: var(--primary);
 }
 
+/* Logo 图标（金色渐变方块，内嵌"伟"字） */
 .logo .logo-mark {
   width: 40px;
   height: 40px;
   border-radius: 8px;
-  background: linear-gradient(135deg, var(--primary), #37a3ff);
+  background: linear-gradient(135deg, var(--primary), #F0C040); /* 金色渐变 */
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: #FFFFFF;
   font-size: 20px;
   font-weight: 800;
 }
 
 .logo .logo-cn {
-  color: var(--navy);
+  color: var(--dark);       /* 中文名用深色 */
 }
 
 .logo .logo-en {
@@ -161,6 +176,7 @@ ol {
   letter-spacing: 1px;
 }
 
+/* 导航菜单 */
 .nav-menu {
   display: flex;
   align-items: center;
@@ -168,7 +184,7 @@ ol {
 }
 
 .nav-item {
-  position: relative;
+  position: relative;       /* 为下拉菜单定位做准备 */
 }
 
 .nav-item > a {
@@ -181,9 +197,10 @@ ol {
 
 .nav-item > a:hover,
 .nav-item > a.active {
-  color: var(--primary);
+  color: var(--primary);    /* 悬停/当前页显示金色 */
 }
 
+/* 当前页面的下划线指示条 */
 .nav-item > a.active::after {
   content: "";
   position: absolute;
@@ -201,16 +218,17 @@ ol {
   top: 100%;
   left: 0;
   min-width: 220px;
-  background: #fff;
+  background: #FFFFFF;
   border-radius: 8px;
   box-shadow: var(--shadow-hover);
   padding: 8px 0;
-  opacity: 0;
+  opacity: 0;               /* 默认隐藏 */
   visibility: hidden;
-  transform: translateY(10px);
+  transform: translateY(10px); /* 初始向下偏移，实现上浮动画 */
   transition: all 0.25s ease;
 }
 
+/* 鼠标悬停一级菜单时展开下拉 */
 .nav-item:hover .dropdown {
   opacity: 1;
   visibility: visible;
@@ -241,24 +259,27 @@ ol {
   cursor: pointer;
 }
 
+/* 移动端汉堡菜单按钮（默认隐藏，小屏显示） */
 .nav-toggle {
   display: none;
   font-size: 24px;
   cursor: pointer;
-  color: var(--navy);
+  color: var(--dark);
 }
 
-/* ============ Hero 轮播 ============ */
+/* ------------------------------------------------------------
+   五、首页 Hero 轮播图
+   ------------------------------------------------------------ */
 .hero {
   position: relative;
   height: 560px;
-  overflow: hidden;
+  overflow: hidden;         /* 裁剪溢出内容 */
 }
 
 .hero-slide {
   position: absolute;
-  inset: 0;
-  opacity: 0;
+  inset: 0;                 /* 铺满整个 hero 区域 */
+  opacity: 0;               /* 默认透明，由 JS 切换 */
   transition: opacity 0.8s ease;
   display: flex;
   align-items: center;
@@ -267,27 +288,29 @@ ol {
 }
 
 .hero-slide.active {
-  opacity: 1;
+  opacity: 1;               /* 当前展示的幻灯片 */
 }
 
+/* 幻灯片上的半透明遮罩，保证文字可读性 */
 .hero-slide::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(100deg, rgba(10, 37, 64, 0.88) 0%, rgba(10, 37, 64, 0.35) 60%, rgba(10, 92, 214, 0.15) 100%);
+  background: linear-gradient(100deg, rgba(30, 24, 16, 0.88) 0%, rgba(30, 24, 16, 0.40) 60%, rgba(218, 165, 32, 0.18) 100%);
 }
 
 .hero-slide .hero-content {
   position: relative;
-  z-index: 2;
-  color: #fff;
+  z-index: 2;               /* 置于遮罩之上 */
+  color: #FFFFFF;
   max-width: 640px;
 }
 
+/* 轮播图顶部小标签 */
 .hero-slide .hero-tag {
   display: inline-block;
   background: var(--accent);
-  color: #fff;
+  color: #FFFFFF;
   font-size: 13px;
   padding: 4px 14px;
   border-radius: 20px;
@@ -303,10 +326,11 @@ ol {
 
 .hero-slide p {
   font-size: 17px;
-  color: #dbe6f5;
+  color: #EFE6CE;           /* 浅金色辅助文字 */
   margin-bottom: 30px;
 }
 
+/* 通用按钮 */
 .btn {
   display: inline-block;
   padding: 12px 32px;
@@ -318,19 +342,21 @@ ol {
   transition: all 0.2s ease;
 }
 
+/* 主要按钮：金色实底 */
 .btn-primary {
   background: var(--primary);
-  color: #fff;
+  color: #FFFFFF;
 }
 
 .btn-primary:hover {
   background: var(--primary-dark);
-  box-shadow: 0 6px 18px rgba(10, 92, 214, 0.4);
+  box-shadow: 0 6px 18px rgba(218, 165, 32, 0.45); /* 金色光晕 */
 }
 
+/* 描边按钮：透明底 + 白边框 */
 .btn-outline {
   background: transparent;
-  color: #fff;
+  color: #FFFFFF;
   border: 1px solid rgba(255, 255, 255, 0.7);
 }
 
@@ -338,11 +364,12 @@ ol {
   background: rgba(255, 255, 255, 0.15);
 }
 
+/* 轮播指示点 */
 .hero-dots {
   position: absolute;
   bottom: 30px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%); /* 水平居中 */
   z-index: 3;
   display: flex;
   gap: 10px;
@@ -357,12 +384,14 @@ ol {
   transition: all 0.3s ease;
 }
 
+/* 当前指示点拉长为胶囊状 */
 .hero-dots span.active {
   width: 28px;
   border-radius: 6px;
   background: var(--accent);
 }
 
+/* 左右切换箭头 */
 .hero-arrow {
   position: absolute;
   top: 50%;
@@ -372,7 +401,7 @@ ol {
   height: 46px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.15);
-  color: #fff;
+  color: #FFFFFF;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -393,9 +422,11 @@ ol {
   right: 30px;
 }
 
-/* ============ 通用区块标题 ============ */
+/* ------------------------------------------------------------
+   六、通用区块标题
+   ------------------------------------------------------------ */
 .section {
-  padding: 70px 0;
+  padding: 70px 0;          /* 上下留白 */
 }
 
 .section-head {
@@ -405,7 +436,7 @@ ol {
 
 .section-head h2 {
   font-size: 32px;
-  color: var(--navy);
+  color: var(--dark);
   margin-bottom: 12px;
 }
 
@@ -414,6 +445,7 @@ ol {
   font-size: 15px;
 }
 
+/* 标题下方的金色装饰线 */
 .section-head .line {
   width: 52px;
   height: 4px;
@@ -422,15 +454,17 @@ ol {
   margin: 16px auto 0;
 }
 
-/* ============ 业务板块 ============ */
+/* ------------------------------------------------------------
+   七、核心业务卡片
+   ------------------------------------------------------------ */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr); /* 三列布局 */
   gap: 24px;
 }
 
 .service-card {
-  background: #fff;
+  background: #FFFFFF;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 36px 28px;
@@ -439,6 +473,7 @@ ol {
   overflow: hidden;
 }
 
+/* 卡片顶部的金色渐变条（默认隐藏，悬停展开） */
 .service-card::before {
   content: "";
   position: absolute;
@@ -446,26 +481,26 @@ ol {
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--primary), #37a3ff);
-  transform: scaleX(0);
+  background: linear-gradient(90deg, var(--primary), #F0C040);
+  transform: scaleX(0);     /* 初始宽度为 0 */
   transform-origin: left;
   transition: transform 0.3s ease;
 }
 
 .service-card:hover {
   box-shadow: var(--shadow-hover);
-  transform: translateY(-6px);
+  transform: translateY(-6px); /* 悬停上浮 */
 }
 
 .service-card:hover::before {
-  transform: scaleX(1);
+  transform: scaleX(1);     /* 悬停时渐变条展开 */
 }
 
 .service-card .icon {
   width: 60px;
   height: 60px;
   border-radius: 12px;
-  background: var(--primary-light);
+  background: var(--primary-light); /* 浅金色图标背景 */
   color: var(--primary);
   display: flex;
   align-items: center;
@@ -476,7 +511,7 @@ ol {
 
 .service-card h3 {
   font-size: 20px;
-  color: var(--navy);
+  color: var(--dark);
   margin-bottom: 12px;
 }
 
@@ -492,16 +527,18 @@ ol {
   font-weight: 600;
 }
 
-/* ============ 数据统计 ============ */
+/* ------------------------------------------------------------
+   八、数据统计条
+   ------------------------------------------------------------ */
 .stats {
-  background: linear-gradient(120deg, var(--navy), var(--primary-dark));
-  color: #fff;
+  background: linear-gradient(120deg, var(--dark), var(--primary-dark)); /* 深棕到深金渐变 */
+  color: #FFFFFF;
   padding: 60px 0;
 }
 
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr); /* 四列布局 */
   gap: 30px;
   text-align: center;
 }
@@ -509,16 +546,18 @@ ol {
 .stat-item .num {
   font-size: 44px;
   font-weight: 800;
-  color: #ffd166;
+  color: #F0C040;           /* 亮金色数字 */
 }
 
 .stat-item .label {
   margin-top: 8px;
-  color: #c9d6e5;
+  color: #CBB98F;
   font-size: 15px;
 }
 
-/* ============ 信息推荐 ============ */
+/* ------------------------------------------------------------
+   九、信息推荐卡片
+   ------------------------------------------------------------ */
 .info-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -530,7 +569,7 @@ ol {
   border-radius: var(--radius);
   overflow: hidden;
   transition: all 0.3s ease;
-  background: #fff;
+  background: #FFFFFF;
 }
 
 .info-card:hover {
@@ -545,12 +584,13 @@ ol {
   position: relative;
 }
 
+/* 缩略图左上角的金色标签 */
 .info-card .thumb .tag {
   position: absolute;
   top: 14px;
   left: 14px;
   background: var(--primary);
-  color: #fff;
+  color: #FFFFFF;
   font-size: 12px;
   padding: 4px 12px;
   border-radius: 4px;
@@ -562,7 +602,7 @@ ol {
 
 .info-card .body h4 {
   font-size: 17px;
-  color: var(--navy);
+  color: var(--dark);
   margin-bottom: 8px;
   line-height: 1.4;
 }
@@ -572,13 +612,16 @@ ol {
   color: var(--text-muted);
 }
 
-/* ============ 新闻列表 ============ */
+/* ------------------------------------------------------------
+   十、新闻列表
+   ------------------------------------------------------------ */
 .news-wrap {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr; /* 左大图 + 右列表 */
   gap: 30px;
 }
 
+/* 头条新闻大图 */
 .news-featured {
   border-radius: var(--radius);
   overflow: hidden;
@@ -588,13 +631,13 @@ ol {
   background-position: center;
   display: flex;
   align-items: flex-end;
-  color: #fff;
+  color: #FFFFFF;
 }
 
 .news-featured .overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 30%, rgba(10, 37, 64, 0.9) 100%);
+  background: linear-gradient(180deg, transparent 30%, rgba(30, 24, 16, 0.9) 100%); /* 底部渐隐遮罩 */
 }
 
 .news-featured .content {
@@ -605,7 +648,7 @@ ol {
 
 .news-featured .date {
   font-size: 13px;
-  color: #c9d6e5;
+  color: #CBB98F;
   margin-bottom: 8px;
 }
 
@@ -620,6 +663,7 @@ ol {
   gap: 16px;
 }
 
+/* 单条新闻 */
 .news-item {
   display: flex;
   gap: 16px;
@@ -628,9 +672,10 @@ ol {
 }
 
 .news-item:last-child {
-  border-bottom: none;
+  border-bottom: none;      /* 最后一条去掉分隔线 */
 }
 
+/* 新闻日期小方块 */
 .news-item .date-box {
   flex-shrink: 0;
   width: 56px;
@@ -664,48 +709,50 @@ ol {
   color: var(--primary);
 }
 
-/* ============ 页脚 ============ */
+/* ------------------------------------------------------------
+   十一、页脚
+   ------------------------------------------------------------ */
 .footer {
-  background: var(--navy);
-  color: #c9d6e5;
+  background: var(--dark);  /* 深色页脚 */
+  color: #CBB98F;
   padding: 60px 0 0;
 }
 
 .footer-top {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr 1fr; /* 公司简介占两倍宽 */
   gap: 40px;
   padding-bottom: 40px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .footer-col h4 {
-  color: #fff;
+  color: #FFFFFF;
   font-size: 16px;
   margin-bottom: 18px;
 }
 
 .footer-col a {
   display: block;
-  color: #9db2cc;
+  color: #A8936B;
   font-size: 14px;
   margin-bottom: 10px;
 }
 
 .footer-col a:hover {
-  color: #fff;
+  color: #FFFFFF;
 }
 
 .footer-about p {
   font-size: 14px;
-  color: #9db2cc;
+  color: #A8936B;
   margin-bottom: 16px;
   max-width: 320px;
 }
 
 .footer-about .contact-line {
   font-size: 13px;
-  color: #9db2cc;
+  color: #A8936B;
   margin-bottom: 6px;
 }
 
@@ -713,21 +760,23 @@ ol {
   padding: 20px 0;
   text-align: center;
   font-size: 13px;
-  color: #7d92ad;
+  color: #7E6E4E;
 }
 
 .footer-bottom a {
-  color: #7d92ad;
+  color: #7E6E4E;
 }
 
 .footer-bottom a:hover {
-  color: #fff;
+  color: #FFFFFF;
 }
 
-/* ============ 内页 Banner ============ */
+/* ------------------------------------------------------------
+   十二、内页 Banner（页面头部横幅）
+   ------------------------------------------------------------ */
 .page-banner {
-  background: linear-gradient(120deg, var(--navy), var(--primary-dark));
-  color: #fff;
+  background: linear-gradient(120deg, var(--dark), var(--primary-dark));
+  color: #FFFFFF;
   padding: 70px 0;
   text-align: center;
 }
@@ -738,38 +787,42 @@ ol {
 }
 
 .page-banner p {
-  color: #c9d6e5;
+  color: #CBB98F;
   font-size: 16px;
 }
 
+/* 面包屑导航 */
 .breadcrumb {
   margin-top: 14px;
   font-size: 13px;
-  color: #9db2cc;
+  color: #A8936B;
 }
 
 .breadcrumb a {
-  color: #9db2cc;
+  color: #A8936B;
 }
 
 .breadcrumb a:hover {
-  color: #fff;
+  color: #FFFFFF;
 }
 
-/* ============ 内页内容 ============ */
+/* ------------------------------------------------------------
+   十三、内页正文内容
+   ------------------------------------------------------------ */
 .page-body {
   padding: 60px 0;
 }
 
+/* 文章排版 */
 .article h2 {
   font-size: 26px;
-  color: var(--navy);
+  color: var(--dark);
   margin: 30px 0 16px;
 }
 
 .article h3 {
   font-size: 20px;
-  color: var(--navy);
+  color: var(--dark);
   margin: 24px 0 12px;
 }
 
@@ -785,18 +838,18 @@ ol {
   margin: 20px 0;
 }
 
-/* 两栏布局 */
+/* 两栏布局（侧边栏 + 正文） */
 .two-col {
   display: grid;
-  grid-template-columns: 240px 1fr;
+  grid-template-columns: 240px 1fr; /* 左侧固定宽侧边栏 */
   gap: 40px;
   align-items: start;
 }
 
 .sidebar {
-  position: sticky;
+  position: sticky;         /* 侧边栏跟随滚动 */
   top: 100px;
-  background: #fff;
+  background: #FFFFFF;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 20px;
@@ -804,10 +857,10 @@ ol {
 
 .sidebar h3 {
   font-size: 16px;
-  color: var(--navy);
+  color: var(--dark);
   margin-bottom: 14px;
   padding-bottom: 12px;
-  border-bottom: 2px solid var(--primary);
+  border-bottom: 2px solid var(--primary); /* 金色下划线 */
 }
 
 .sidebar a {
@@ -852,7 +905,7 @@ ol {
 
 .industry-card h3 {
   font-size: 18px;
-  color: var(--navy);
+  color: var(--dark);
   margin-bottom: 10px;
 }
 
@@ -861,10 +914,12 @@ ol {
   color: var(--text-muted);
 }
 
-/* ============ 联系我们 ============ */
+/* ------------------------------------------------------------
+   十四、联系我们
+   ------------------------------------------------------------ */
 .contact-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr; /* 左信息 + 右表单 */
   gap: 40px;
 }
 
@@ -889,7 +944,7 @@ ol {
 
 .contact-info .item h4 {
   font-size: 16px;
-  color: var(--navy);
+  color: var(--dark);
   margin-bottom: 4px;
 }
 
@@ -898,6 +953,7 @@ ol {
   color: var(--text-muted);
 }
 
+/* 表单 */
 .form-group {
   margin-bottom: 18px;
 }
@@ -905,7 +961,7 @@ ol {
 .form-group label {
   display: block;
   font-size: 14px;
-  color: var(--navy);
+  color: var(--dark);
   margin-bottom: 6px;
   font-weight: 500;
 }
@@ -921,25 +977,31 @@ ol {
   transition: border 0.2s ease;
 }
 
+/* 输入框聚焦态：金色边框 + 光晕 */
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(10, 92, 214, 0.1);
+  box-shadow: 0 0 0 3px rgba(218, 165, 32, 0.15);
 }
 
+/* 一行两个字段 */
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
 }
 
-/* ============ 响应式 ============ */
+/* ------------------------------------------------------------
+   十五、响应式布局
+   ------------------------------------------------------------ */
+
+/* 平板（≤992px） */
 @media (max-width: 992px) {
   .services-grid,
   .info-grid,
   .industry-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr); /* 改为两列 */
   }
 
   .stats-grid {
@@ -948,7 +1010,7 @@ ol {
 
   .news-wrap,
   .contact-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* 改为单列 */
   }
 
   .footer-top {
@@ -956,22 +1018,24 @@ ol {
   }
 
   .two-col {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* 侧边栏与正文堆叠 */
   }
 
   .sidebar {
-    position: static;
+    position: static;       /* 取消吸顶 */
   }
 }
 
+/* 手机（≤768px） */
 @media (max-width: 768px) {
+  /* 移动端抽屉式导航 */
   .nav-menu {
     position: fixed;
     top: 0;
-    right: -280px;
+    right: -280px;          /* 默认移出屏幕右侧 */
     width: 280px;
     height: 100vh;
-    background: #fff;
+    background: #FFFFFF;
     flex-direction: column;
     align-items: flex-start;
     padding: 80px 20px 20px;
@@ -981,7 +1045,7 @@ ol {
   }
 
   .nav-menu.open {
-    right: 0;
+    right: 0;               /* 展开时滑入 */
   }
 
   .nav-item {
@@ -994,11 +1058,11 @@ ol {
   }
 
   .nav-toggle {
-    display: block;
+    display: block;         /* 显示汉堡按钮 */
   }
 
   .topbar-right .top-links {
-    display: none;
+    display: none;          /* 小屏隐藏顶部链接 */
   }
 
   .hero {
@@ -1014,7 +1078,7 @@ ol {
   .industry-grid,
   .stats-grid,
   .footer-top {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* 全部改为单列 */
   }
 
   .section {
